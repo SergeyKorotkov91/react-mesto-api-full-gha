@@ -1,4 +1,4 @@
-export const BASE_URL = "https://auth.nomoreparties.co";
+export const BASE_URL = "https://api.kanc1er.nomoreparties.co";
 //export const BASE_URL = "";
 //export const BASE_URL = 'http://localhost:3000';
 
