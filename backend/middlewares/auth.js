@@ -5,13 +5,15 @@ const { NODE_ENV } = process.env;
 const { JWT_SECRET = 'strong-secret-key' } = process.env;
 
 const auth = (req, res, next) => {
-  const token = req.cookies.jwt;
+  const { authorization } = req.headers;
 
-  if (!token) {
-    throw new AuthError('Требуется авторизация');
+  const bearer = 'Bearer ';
+  if (!authorization || !authorization.startsWith(bearer)) {
+    throw new AuthError('Сначала авторизируйтесь');
   }
-  let payload;
 
+  const token = authorization.replace(bearer, '');
+  let payload;
   try {
     payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'strong-secret-key');
   } catch (err) {

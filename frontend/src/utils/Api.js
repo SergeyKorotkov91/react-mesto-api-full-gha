@@ -13,7 +13,7 @@ class Api {
 
     getInitialCards() {
         return fetch(`${this._baseUrl}/cards`, {
-            headers: this._headers
+            headers: {...this._headers, Authorization: `Bearer ${localStorage.getItem('jwt')}`}
         })
             .then(res => this._parseResponse(res));
     }
@@ -21,7 +21,7 @@ class Api {
     addCard(data) {
         return fetch(`${this._baseUrl}/cards`, {
             method: 'POST',
-            headers: this._headers,
+            headers: {...this._headers, Authorization: `Bearer ${localStorage.getItem('jwt')}`},
             body: JSON.stringify({
                 name: data.name,
                 link: data.link
@@ -33,7 +33,7 @@ class Api {
     deleteCard(cardId) {
         return fetch(`${this._baseUrl}/cards/${cardId}`, {
             method: 'DELETE',
-            headers: this._headers
+            headers: {...this._headers, Authorization: `Bearer ${localStorage.getItem('jwt')}`}
         })
             .then(res => this._parseResponse(res));
     }
@@ -42,17 +42,17 @@ class Api {
         return isLiked
             ? fetch(`${this._baseUrl}/cards/${id}/likes`, {
                 method: "PUT",
-                headers: this._headers,
+                headers: {...this._headers, Authorization: `Bearer ${localStorage.getItem('jwt')}`},
             }).then((res) => this._parseResponse(res))
             : fetch(`${this._baseUrl}/cards/${id}/likes`, {
                 method: "DELETE",
-                headers: this._headers,
+                headers: {...this._headers, Authorization: `Bearer ${localStorage.getItem('jwt')}`},
             }).then((res) => this._parseResponse(res));
     }
 
     getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
-            headers: this._headers
+            headers: {...this._headers, Authorization: `Bearer ${localStorage.getItem('jwt')}`}
         })
             .then(res => this._parseResponse(res));
     }
@@ -60,7 +60,7 @@ class Api {
     editUserInfo(data) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
-            headers: this._headers,
+            headers: {...this._headers, Authorization: `Bearer ${localStorage.getItem('jwt')}`},
             body: JSON.stringify({
                 name: data.name,
                 about: data.about //job
@@ -72,7 +72,7 @@ class Api {
     editAvatar(data) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: 'PATCH',
-            headers: this._headers,
+            headers: {...this._headers, Authorization: `Bearer ${localStorage.getItem('jwt')}`},
             body: JSON.stringify({
                 avatar: data.avatar
             })
@@ -87,7 +87,7 @@ const api = new Api({
     baseUrl: 'https://api.kanc1er.nomoreparties.co',
 
     headers: {
-        authorization: "57f855b2-3dbd-4c01-9fcc-5cfa2e14a7d4",
+        // authorization: "57f855b2-3dbd-4c01-9fcc-5cfa2e14a7d4",
         "content-type": "application/json",
     },
 });
