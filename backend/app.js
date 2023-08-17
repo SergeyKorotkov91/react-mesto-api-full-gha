@@ -24,7 +24,11 @@ app.get('/crash-test', () => {
 });
 
 app.use(cors({
-  origin: ['http://localhost:3000', ''],
+  origin: [
+    'https://kanc1er.nomoreparties.co',
+    'http://kanc1er.nomoreparties.co',  
+    'http://localhost:3000'
+  ],
   credentials: true,
   maxAge: 30,
 }));
