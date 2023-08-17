@@ -1,0 +1,17 @@
+.login__subtitle {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.94px;
+  margin: 0;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  padding-top: 15px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 450px) {
+  .login__subtitle {
+    padding-top: 20px;
+  }
+}

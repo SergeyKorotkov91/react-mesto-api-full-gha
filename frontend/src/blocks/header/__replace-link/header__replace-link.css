@@ -1,0 +1,23 @@
+.header__replace-link {
+    margin: 0;
+    font-size: 18px;
+    line-height: 22px;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    color: #a9a9a9;
+    text-decoration: none;
+    height: fit-content;
+    opacity: 1;
+    transition: opacity 0.3s ease 0s;
+}
+
+.header__replace-link:hover {
+    opacity: 0.6;
+    color: #fff;
+}
+
+@media (max-width: 520px) {
+    .header__replace-link {
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

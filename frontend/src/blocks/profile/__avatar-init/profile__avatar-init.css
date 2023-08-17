@@ -1,0 +1,4 @@
+.profile__avatar-init {
+    position: relative;
+    grid-area: photo;
+}
