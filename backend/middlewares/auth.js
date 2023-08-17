@@ -1,21 +1,21 @@
 const jwt = require('jsonwebtoken');
 const AuthError = require('../errors/authError');
 
-const { NODE_ENV } = process.env;
 const { JWT_SECRET = 'strong-secret-key' } = process.env;
 
 const auth = (req, res, next) => {
   const { authorization } = req.headers;
 
   const bearer = 'Bearer ';
+
   if (!authorization || !authorization.startsWith(bearer)) {
     throw new AuthError('Сначала авторизируйтесь');
   }
-
+  
   const token = authorization.replace(bearer, '');
   let payload;
   try {
-    payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'strong-secret-key');
+    payload = jwt.verify(token, JWT_SECRET);
   } catch (err) {
     throw new AuthError('Требуется авторизация');
   }

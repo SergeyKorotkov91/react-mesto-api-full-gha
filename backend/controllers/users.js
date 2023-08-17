@@ -7,7 +7,6 @@ const DuplicationError = require('../errors/dataDuplication');
 const BadRequest = require('../errors/badRequest');
 
 const { JWT_SECRET = 'strong-secret-key' } = process.env;
-const { NODE_ENV } = process.env;
 
 const createUser = (req, res, next) => {
   const {
@@ -50,7 +49,7 @@ const login = (req, res, next) => {
           }
           const token = jwt.sign(
             { id: user._id },
-            NODE_ENV === 'production' ? JWT_SECRET : 'strange-secret-key',
+            JWT_SECRET,
             { expiresIn: '7d' },
           );
           res.cookie('jwt', token, {
