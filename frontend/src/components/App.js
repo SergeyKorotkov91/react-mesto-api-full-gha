@@ -108,8 +108,8 @@ function App() {
   useEffect(() => {
     api
       .getInitialCards()
-      .then((cardsApi) => {
-        setCards(cardsApi);
+      .then(({data}) => {
+        setCards(data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -214,8 +214,8 @@ function App() {
   function handleAddPlaceSubmit(newCard) {
     api
       .addCard(newCard)
-      .then((newCard) => {
-        setCards([newCard, ...cards]);
+      .then(({data}) => {
+        setCards([data, ...cards]);
 
         closeAllPopups();
       })
