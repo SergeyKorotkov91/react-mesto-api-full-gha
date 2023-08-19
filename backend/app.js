@@ -1,10 +1,11 @@
-const config = require('./utils/config');
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const helmet = require('helmet');
+const config = require('./utils/config');
 const limiter = require('./middlewares/limiter');
 const routes = require('./routes/index');
 const error = require('./middlewares/error');
