@@ -36,6 +36,7 @@ function App() {
   //выход
   function logOut() {
     localStorage.removeItem("jwt");
+    setLoggedIn(false);
     navigate("/signin");
   }
 
