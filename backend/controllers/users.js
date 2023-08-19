@@ -52,7 +52,7 @@ const login = (req, res, next) => {
             JWT_SECRET,
             { expiresIn: '7d' },
           );
-          return res.send({ jwt: token });
+          return res.send({ token });
         })
         .catch(next);
     })
