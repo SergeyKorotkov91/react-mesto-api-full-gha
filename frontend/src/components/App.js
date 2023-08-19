@@ -61,6 +61,7 @@ function App() {
       .authorize(email, password)
       .then((data) => {
         localStorage.setItem("jwt", data.token);
+        console.log(data.token);
         setUserData(email);
         setLoggedIn(true);
         navigate("/");
