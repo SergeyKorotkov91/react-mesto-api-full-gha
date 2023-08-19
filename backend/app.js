@@ -5,9 +5,9 @@ const { errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const helmet = require('helmet');
-const rateLimit = require('express-rate-limit');
+const limiter = require('./middlewares/limiter');
 const routes = require('./routes/index');
-const error = require('./middlewares/error')
+const error = require('./middlewares/error');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
@@ -26,8 +26,8 @@ app.get('/crash-test', () => {
 app.use(cors({
   origin: [
     'https://kanc1er.nomoreparties.co',
-    'http://kanc1er.nomoreparties.co',  
-    'http://localhost:3000'
+    'http://kanc1er.nomoreparties.co',
+    'http://localhost:3000',
   ],
   credentials: true,
   maxAge: 30,
@@ -35,11 +35,6 @@ app.use(cors({
 
 mongoose.connect(config.mongodbURI, {
   useNewUrlParser: true,
-});
-
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
 });
 
 app.use(limiter);

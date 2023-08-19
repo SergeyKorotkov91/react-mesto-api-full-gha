@@ -99,7 +99,7 @@ const updateProfile = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new BadRequest('Невалидные данные'))
+        next(new BadRequest('Невалидные данные'));
       } else {
         next(err);
       }
@@ -118,7 +118,7 @@ const updateAvatar = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new BadRequest('Невалидные данные'))
+        next(new BadRequest('Невалидные данные'));
       } else {
         next(err);
       }

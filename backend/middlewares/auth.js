@@ -11,7 +11,7 @@ const auth = (req, res, next) => {
   if (!authorization || !authorization.startsWith(bearer)) {
     throw new AuthError('Сначала авторизируйтесь');
   }
-  
+
   const token = authorization.replace(bearer, '');
   let payload;
   try {
