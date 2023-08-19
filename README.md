@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 51.250.79.60
+IP 51.250.79.60
 
 Frontend https://kanc1er.nomoreparties.co/
 
