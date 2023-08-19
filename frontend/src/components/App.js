@@ -63,7 +63,7 @@ function App() {
         localStorage.setItem("jwt", data.token);
         setUserData(email);
         setLoggedIn(true);
-        navigate("/");
+        navigate("/", { replace: true });
       })
       .catch((err) => {
         console.error(`Ошибка: ${err}`);

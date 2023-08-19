@@ -1,3 +1,4 @@
+const config = require('./utils/config');
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
@@ -6,8 +7,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const routes = require('./routes/index');
-const error = require('./middlewares/error');
-const config = require('./utils/config');
+const error = require('./middlewares/error')
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;

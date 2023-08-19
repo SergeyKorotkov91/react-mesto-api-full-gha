@@ -52,13 +52,7 @@ const login = (req, res, next) => {
             JWT_SECRET,
             { expiresIn: '7d' },
           );
-          res.cookie('jwt', token, {
-            httpOnly: true,
-            maxAge: 3600000 * 24 * 7,
-            sameSite: true,
-          })
-            //.send({ id: user._id });
-            res.send({ token });
+          return res.send({ jwt: token });
         })
         .catch(next);
     })
@@ -103,20 +97,32 @@ const updateProfile = (req, res, next) => {
       }
       res.send(user);
     })
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'ValidationError') {
+        next(new BadRequest('Невалидные данные'))
+      } else {
+        next(err);
+      }
+    });
 };
 
 const updateAvatar = (req, res, next) => {
   const { avatar } = req.body;
   const { id } = req.user;
-  User.findByIdAndUpdate(id, { avatar })
+  User.findByIdAndUpdate(id, { avatar }, { new: true, runValidators: true, upsert: false })
     .then((user) => {
       if (!user) {
         throw new NotFoundError('Нет пользователя с таким id');
       }
       return res.send(user);
     })
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'ValidationError') {
+        next(new BadRequest('Невалидные данные'))
+      } else {
+        next(err);
+      }
+    });
 };
 
 module.exports = {
