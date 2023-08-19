@@ -96,13 +96,15 @@ function App() {
   const [currentUser, setСurrentUser] = useState({});
 
   useEffect(() => {
+    if (isLoggedIn) {
     api
       .getUserInfo()
       .then((userInfoApi) => {
         setСurrentUser(userInfoApi);
       })
       .catch((err) => console.log(err));
-  }, []);
+    }
+  }, [isLoggedIn]);
 
   const [cards, setCards] = useState([]);
 
