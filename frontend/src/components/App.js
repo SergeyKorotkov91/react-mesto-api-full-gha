@@ -97,25 +97,27 @@ function App() {
 
   useEffect(() => {
     if (isLoggedIn) {
-    api
-      .getUserInfo()
-      .then((userInfoApi) => {
-        setСurrentUser(userInfoApi);
-      })
-      .catch((err) => console.log(err));
+      api
+        .getUserInfo()
+        .then((userInfoApi) => {
+          setСurrentUser(userInfoApi);
+        })
+        .catch((err) => console.log(err));
     }
   }, [isLoggedIn]);
 
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    api
-      .getInitialCards()
-      .then(({data}) => {
-        setCards(data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    if (isLoggedIn) {
+      api
+        .getInitialCards()
+        .then(({data}) => {
+          setCards(data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [isLoggedIn]);
 
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
 
